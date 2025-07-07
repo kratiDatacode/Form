@@ -2,3 +2,7 @@ body{
   font-family: sans-serif;
   background-color: rgb(231, 204, 231);
 }
+
+.error{
+  color:red;
+}
