@@ -13,11 +13,39 @@ const FormWithoutYup = () => {
     interests: [],
     birthDate: "",
   });
-  const handleSubmit = () => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    let updatedInterests = [...formData.interests];
+    if (checked) {
+      updatedInterests.push(name);
+    } else {
+      updatedInterests = updatedInterests.filter(
+        (interest) => interest !== name
+      );
+    }
+     
+    setFormData({
+        ...formData,
+        interests:updatedInterests,
+    });
+  };
 
   return (
     <>
-      <section className="row mx-0 py-5 my-5 d-flex justify-content-center align-items-center">
+      <section className="row mx-0 py-5 d-flex justify-content-center align-items-center">
         <div className="col-md-10">
           <div className="row mx-0 d-flex justify-content-center align-items-center">
             <div className="col-md-10 p-4 rounded shadow bg-white">
@@ -30,6 +58,7 @@ const FormWithoutYup = () => {
                     value={formData.firstName}
                     placeholder="Enter your first name"
                     className="form-control mb-3"
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -40,6 +69,7 @@ const FormWithoutYup = () => {
                     value={formData.lastName}
                     placeholder="Enter your last name"
                     className="form-control mb-3"
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -50,6 +80,7 @@ const FormWithoutYup = () => {
                     value={formData.email}
                     placeholder="Enter your email"
                     className="form-control mb-3"
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -60,6 +91,7 @@ const FormWithoutYup = () => {
                     value={formData.phoneNumber}
                     placeholder="Enter your Phone Number"
                     className="form-control mb-3"
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -70,6 +102,7 @@ const FormWithoutYup = () => {
                     value={formData.password}
                     placeholder="Enter your password"
                     className="form-control mb-3"
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -80,6 +113,7 @@ const FormWithoutYup = () => {
                     value={formData.confirmPassword}
                     placeholder="Confirm your password"
                     className="form-control mb-3"
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -90,15 +124,21 @@ const FormWithoutYup = () => {
                     value={formData.age}
                     placeholder="Enter your age"
                     className="form-control mb-3"
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
                   <label>Gender:</label>
-                  <select name="gender"  value={formData.gender} className="form-control mb-3">
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    className="form-control mb-3"
+                    onChange={handleChange}
+                  >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
-                  </select >
+                  </select>
                 </div>
                 <div>
                   <label className="mb-3">Interests:</label>
@@ -107,6 +147,7 @@ const FormWithoutYup = () => {
                       type="checkbox"
                       name="coding"
                       checked={formData.interests.includes("coding")}
+                      onChange={handleCheckboxChange}
                     />
                     Coding
                   </label>
@@ -115,6 +156,7 @@ const FormWithoutYup = () => {
                       type="checkbox"
                       name="sports"
                       checked={formData.interests.includes("sports")}
+                      onChange={handleCheckboxChange}
                     />
                     Sports
                   </label>
@@ -123,6 +165,7 @@ const FormWithoutYup = () => {
                       type="checkbox"
                       name="reading"
                       checked={formData.interests.includes("reading")}
+                      onChange={handleCheckboxChange}
                     />
                     Reading
                   </label>
@@ -137,7 +180,9 @@ const FormWithoutYup = () => {
                     className="form-control mb-3"
                   />
                 </div>
-                <button type="submit" className="btn btn-primary mb-3">Submit</button>
+                <button type="submit" className="btn btn-primary mb-3">
+                  Submit
+                </button>
               </form>
             </div>
           </div>
