@@ -1,11 +1,13 @@
 import './App.css'
-import FormWithoutYup from './components/FormWithoutYup'
+// import FormWithoutYup from './components/FormWithoutYup'
+import FormWithYup from './components/FormWithYup'
 
 const App = () => {
 
   return (
     <>
-     <FormWithoutYup/>
+     {/* <FormWithoutYup/> */}
+     <FormWithYup/>
     </>
   )
 }
